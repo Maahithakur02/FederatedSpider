@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@400..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'Syne', sans-serif;
+
+  --background: 230 25% 4%;
+  --foreground: 210 40% 98%;
+  --card: 230 25% 7%;
+  --card-foreground: 210 40% 98%;
+  --card-border: 230 25% 14%;
+  --popover: 230 25% 7%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 190 90% 50%;
+  --primary-foreground: 230 25% 4%;
+  --secondary: 230 25% 13%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 230 25% 12%;
+  --muted-foreground: 215 20% 55%;
+  --accent: 280 80% 60%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 230 25% 14%;
+  --input: 230 25% 12%;
+  --ring: 190 90% 50%;
+  --radius: 0.75rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground;
+    font-family: var(--font-sans);
+    background-image:
+      radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, hsl(var(--accent) / 0.04) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-card/60 backdrop-blur-xl border border-white/5 shadow-2xl shadow-black/50;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 40px hsl(var(--primary) / 0.6), 0 0 80px hsl(var(--primary) / 0.3);
+  }
+
+  .box-glow {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.2);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero floating animations */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-8px) rotate(0.5deg); }
+  66%       { transform: translateY(-4px) rotate(-0.3deg); }
+}
+@keyframes floatMid {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+.hero-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+.hero-float-mid {
+  animation: floatMid 4.5s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+/* Architecture dashed line animation */
+@keyframes dashFlow {
+  to { stroke-dashoffset: -30; }
+}
+.arch-dash-animate {
+  animation: dashFlow 0.8s linear infinite;
+}
+
+/* Architecture pulse ring */
+@keyframes pulseRing {
+  0%   { r: 64; opacity: 0.9; }
+  100% { r: 100; opacity: 0; }
+}
+.arch-pulse-ring {
+  animation: pulseRing 1s ease-out forwards;
+}
